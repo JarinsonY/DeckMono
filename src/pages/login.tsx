@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import Swal from "sweetalert2";
 import { schema } from "@/constants/schema";
+import { useRouter } from "next/router";
 
 type FormValues = {
     /** email para enviar a login */
@@ -13,6 +14,7 @@ type FormValues = {
 };
 
 const LoginPage = () => {
+    const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const {
         register,
@@ -33,12 +35,13 @@ const LoginPage = () => {
                 body: JSON.stringify(data),
             });
             if (response.ok) {
-                Swal.fire({
+                /* Swal.fire({
                     icon: "success",
                     title: "¡Bienvenido!",
                     showConfirmButton: false,
                     timer: 1500,
-                });
+                }); */
+                router.push("/dashboard");
             } else {
                 throw new Error("Error en la autenticación");
             }
