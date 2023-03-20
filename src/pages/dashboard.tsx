@@ -17,23 +17,9 @@ import { Pokemon, PokemonListResponse } from '@/utils/types';
 } */
 
 const Dashboard = () => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
+    const { pokemonList, getPokemonList, isLoading } = useGetPokemonList();
 
-    const { pokemonList, isLoading } = useGetPokemonList(
-        POKEMONS_PER_PAGE,
-        (currentPage - 1) * POKEMONS_PER_PAGE
-    );
-
-    useEffect(() => {
-        if (pokemonList?.count) {
-            setTotalPages(Math.ceil(pokemonList.count / POKEMONS_PER_PAGE));
-        }
-    }, [pokemonList]);
-
-    const handlePageChange = (page: number) => {
-        setCurrentPage(page);
-    };
+    console.log('pokemonList', pokemonList)
 
     return (
         <div>
@@ -45,13 +31,14 @@ const Dashboard = () => {
                     {/* {pokemonList?.results.map((pokemon: Pokemon) => (
                         <Card key={pokemon.name} pokemon={pokemon} onClick={() => { }} />
                     ))} */}
-                    {pokemonList?.results?.map((pokemon: any) => (
-                        console.log('pokemon', pokemon)
+                    {pokemonList?.list.map((pokemon: any) => (
+                        <p key={pokemon.name}>{pokemon.name}</p>
                     ))}
                     <Pagination
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={handlePageChange}
+                        page={(Number(pokemonList?.offset) / POKEMONS_PER_PAGE) + 1}
+                        nextPage={pokemonList?.next}
+                        prevPage={pokemonList?.prev}
+                        onPageChange={getPokemonList}
                     />
                 </>
             )}
