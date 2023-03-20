@@ -7,6 +7,7 @@ type Data = {
 };
 
 interface User {
+    username: string;
     email: string;
     password: string;
 }
@@ -18,7 +19,10 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         (user: Data) => user.email === email && user.password === password
     );
     if (usuario) {
-        res.status(200).json({ message: "Autenticación exitosa" });
+        res.status(200).json({
+            username: usuario.username,
+            email: usuario.email,
+        });
     } else {
         res.status(401).json({ message: "Credenciales incorrectas" });
     }

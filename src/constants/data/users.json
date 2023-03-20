@@ -1,14 +1,22 @@
 [
     {
+        "username": "usuario1",
         "email": "usuario1@ejemplo.com",
         "password": "password123"
     },
     {
+        "username": "usuario2",
         "email": "usuario2@ejemplo.com",
         "password": "contraseña321"
     },
     {
+        "username": "usuario3",
         "email": "usuario3@ejemplo.com",
         "password": "clave_secreta"
+    },
+    {
+        "username": "usuario4",
+        "email": "bryanportillo8@gmail.com",
+        "password": "123456"
     }
 ]
