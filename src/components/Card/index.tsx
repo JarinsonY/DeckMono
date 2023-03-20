@@ -1,13 +1,14 @@
+import { Pokemon } from "@/utils/types";
 import Image from "next/image";
 
-type Pokemon = {
+/* type Pokemon = {
     id: number;
     name: string;
     image: string;
     type: string;
     weight: number;
     moves: string[];
-}
+} */
 
 const Card = ({ pokemon, onClick }: { pokemon: Pokemon, onClick: () => void }) => {
     return (
