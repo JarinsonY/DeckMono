@@ -1,40 +1,40 @@
 
+import { useState } from 'react';
 interface PaginationProps {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
+    page: number;
+    prevPage: string;
+    nextPage: string;
+    onPageChange: (url: string) => Promise<void>;
 }
 
 const Pagination: React.FC<PaginationProps> = ({
-  currentPage,
-  totalPages,
-  onPageChange,
+    page,
+    prevPage,
+    nextPage,
+    onPageChange,
 }) => {
-  const pages = [];
+    const handlePrevPage = () => {
+        onPageChange(prevPage);
+    };
+    const handleNextPage = () => {
+        onPageChange(nextPage);
+    };
 
-  for (let i = 1; i <= totalPages; i++) {
-    pages.push(
-      <li key={i} className={i === currentPage ? 'active' : ''}>
-        <button onClick={() => onPageChange(i)}>{i}</button>
-      </li>
+    return (
+        <ul className="pagination">
+            {prevPage !== null && (
+                <li>
+                    <button onClick={handlePrevPage}>&lt;</button>
+                </li>
+            )}
+            {page}
+            {nextPage !== null && (
+                <li>
+                    <button onClick={handleNextPage}>&gt;</button>
+                </li>
+            )}
+        </ul>
     );
-  }
-
-  return (
-    <ul className="pagination">
-      {currentPage > 1 && (
-        <li>
-          <button onClick={() => onPageChange(currentPage - 1)}>&lt;</button>
-        </li>
-      )}
-      {pages}
-      {currentPage < totalPages && (
-        <li>
-          <button onClick={() => onPageChange(currentPage + 1)}>&gt;</button>
-        </li>
-      )}
-    </ul>
-  );
 };
 
 export default Pagination;
