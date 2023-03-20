@@ -5,6 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import Swal from "sweetalert2";
 import { schema } from "@/constants/schema";
 import { useRouter } from "next/router";
+import { useAuth } from "@/context/AuthContext";
 
 type FormValues = {
     /** email para enviar a login */
@@ -15,6 +16,8 @@ type FormValues = {
 
 const LoginPage = () => {
     const router = useRouter();
+    const { login } = useAuth();
+
     const [isLoading, setIsLoading] = useState(false);
     const {
         register,
@@ -27,31 +30,17 @@ const LoginPage = () => {
     const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
         setIsLoading(true);
         try {
-            const response = await fetch("/api/login", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-            });
-            if (response.ok) {
-                /* Swal.fire({
-                    icon: "success",
-                    title: "¡Bienvenido!",
-                    showConfirmButton: false,
-                    timer: 1500,
-                }); */
-                router.push("/dashboard");
-            } else {
-                throw new Error("Error en la autenticación");
-            }
-        } catch (error) {
+            await login(data.email, data.password);
+            router.push("/");
+        }
+        catch (error) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
                 text: "¡Algo salió mal!",
             });
-        } finally {
+        }
+        finally {
             setIsLoading(false);
         }
     };

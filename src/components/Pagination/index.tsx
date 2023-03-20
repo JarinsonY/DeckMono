@@ -1,5 +1,7 @@
 
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
+import { PaginationButton, PaginationContainer } from './styled';
 interface PaginationProps {
     page: number;
     prevPage: string;
@@ -21,19 +23,19 @@ const Pagination: React.FC<PaginationProps> = ({
     };
 
     return (
-        <ul className="pagination">
+        <PaginationContainer>
             {prevPage !== null && (
-                <li>
-                    <button onClick={handlePrevPage}>&lt;</button>
-                </li>
+                <PaginationButton position={0} onClick={handlePrevPage}>
+                    <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
+                </PaginationButton>
             )}
-            {page}
+            <PaginationButton position={1}>{page}</PaginationButton>
             {nextPage !== null && (
-                <li>
-                    <button onClick={handleNextPage}>&gt;</button>
-                </li>
+                <PaginationButton position={2} onClick={handleNextPage}>
+                    <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+                </PaginationButton>
             )}
-        </ul>
+        </PaginationContainer>
     );
 };
 

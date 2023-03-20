@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { createContext, useContext, useState } from 'react';
 
 interface User {
@@ -28,10 +29,16 @@ function useAuth() {
 function AuthProvider({ children }: AuthProviderProps) {
     const [user, setUser] = useState<User | null>(null);
 
+    const router = useRouter();
+
     async function login(email: string, password: string) {
+        console.log('login', email, password)
         // Aquí iría la lógica de autenticación, por ejemplo:
         const response = await fetch('/api/login', {
             method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify({ email, password }),
         });
         if (response.ok) {
@@ -39,6 +46,7 @@ function AuthProvider({ children }: AuthProviderProps) {
             const user = { username: data.username, email: data.email };
             setUser(user);
             localStorage.setItem('user', JSON.stringify(user));
+            router.push("/dashboard");
         } else {
             throw new Error('Invalid email or password');
         }
@@ -47,6 +55,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     function logout() {
         setUser(null);
         localStorage.removeItem('user');
+        router.push('/login');
     }
 
     return (
