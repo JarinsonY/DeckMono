@@ -1,22 +1,22 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import Image, { StaticImageData } from 'next/image'
+import { ChevronDownIcon, UserCircleIcon } from '@heroicons/react/20/solid'
+import Image from 'next/image'
 import { useAuth } from '@/context/AuthContext'
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
 }
 
-const AvatarButton = ({ avatarImg }: { avatarImg: string | StaticImageData }) => {
+const AvatarButton = () => {
 
     const { user, logout } = useAuth();
 
     return (
         <Menu as="div" className="relative inline-block text-left">
             <div>
-                <Menu.Button className="inline-flex items-center w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-100 hover:bg-gray-50">
-                    <Image src={avatarImg} alt="Avatar" width={40} height={40} />
+                <Menu.Button className="inline-flex items-center w-full justify-center gap-x-1.5 rounded-md py-2 px-6 text-sm font-semibold text-gray-900 hover:bg-gray-50 transition-all">
+                    <UserCircleIcon className="h-10 w-10 text-gray-400" aria-hidden="true" />
                     <ChevronDownIcon className="-mr-1 h-5 w-5 text-gray-400" aria-hidden="true" />
                 </Menu.Button>
             </div>

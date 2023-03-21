@@ -43,7 +43,7 @@ const Dashboard = () => {
     console.log('pokemonList', pokemonList)
 
     return (
-        <div className='h-screen'>
+        <div className='h-screen bg-gradient-to-r from-zinc-900 to-cyan-900'>
             <Navbar />
             <Main>
                 {/* <Title>Dashboard</Title> */}
