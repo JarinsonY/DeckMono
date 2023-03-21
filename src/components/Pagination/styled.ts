@@ -2,7 +2,7 @@ import tw from "twin.macro";
 import styled from "styled-components";
 
 export const PaginationContainer = styled.ul`
-    ${tw`pb-8 isolate inline-flex rounded-md shadow-sm`}
+    ${tw`mt-2 pb-8 isolate inline-flex rounded-md shadow-sm`}
 `;
 
 export const PaginationButton = styled.li(

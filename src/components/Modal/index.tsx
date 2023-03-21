@@ -1,9 +1,9 @@
 import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import DataRow from './DataRow'
 import Image from 'next/image'
 import { capitalizeStr } from '@/utils/funtions'
+import DataRow from '../shared/DataRow'
 
 type DetailsPokemon = {
     name: string,
@@ -77,7 +77,6 @@ const Modal = ({ open, setOpen, details }: { open: boolean, setOpen: (open: bool
                                             <DataRow label="Types" description={details.types.map((type: any) => type.type.name).join(', ')} />
                                             <DataRow label="Stats" description={details.stats.map((stat: any) => stat.stat.name).join(', ')} />
                                         </dl>
-
                                     </div>
                                 </div>
                             </Dialog.Panel>

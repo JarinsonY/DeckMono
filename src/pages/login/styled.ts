@@ -20,7 +20,3 @@ export const Title = styled.h1`
 export const Form = styled.form`
     ${tw`w-full flex flex-col py-1 px-8 rounded-xl text-white my-4`}
 `;
-
-export const Button = styled.button`
-    ${tw`cursor-pointer my-3.5 py-3 px-4 bg-rose-500 box-border text-white font-semibold rounded-xl uppercase transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-zinc-600 duration-300`}
-`;

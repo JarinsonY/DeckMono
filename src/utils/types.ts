@@ -1,10 +1,17 @@
-export interface Pokemon {
+export interface User {
     id: number;
     name: string;
-    weight: number;
-    image: string;
-    moves: string[];
+    username: string;
+    email: string;
+    phone: string;
+    age: number;
+    token: string;
 }
+
+export type DataLogin = {
+    email: string;
+    password: string;
+};
 
 export interface PokemonListResponse {
     name: string;
