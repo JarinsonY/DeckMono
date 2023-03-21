@@ -16,7 +16,7 @@ const AppLayout = ({ children }: Props) => {
                 <title>DexMono | JP</title>
                 <meta name="description" content="Technical test for Monoma" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="../../assets/images/JP.png" />
+                <link rel="icon" href="../../assets/images/JP.png" type="image/x-icon" />
             </Head>
             <ContainerLayout>
                 <Navbar />

@@ -17,7 +17,7 @@ export default function Home() {
         if (!token) {
             router.push('/login');
         }
-    }, [router]);
+    }, []);
 
     return (
         <AppLayout>
