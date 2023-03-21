@@ -12,7 +12,6 @@ export type DataLogin = {
     email: string;
     password: string;
 };
-
 export interface PokemonListResponse {
     name: string;
     count: number;
