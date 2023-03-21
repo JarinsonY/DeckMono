@@ -45,11 +45,11 @@ const Modal = ({ open, setOpen, details }: { open: boolean, setOpen: (open: bool
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:p-6">
+                            <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-gray-100 px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:p-6">
                                 <div className="absolute top-0 right-0 hidden pt-4 pr-4 sm:block">
                                     <button
                                         type="button"
-                                        className="rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                        className="rounded-md bg-gray-100 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                         onClick={() => setOpen(false)}
                                     >
                                         <span className="sr-only">Close</span>
@@ -57,7 +57,7 @@ const Modal = ({ open, setOpen, details }: { open: boolean, setOpen: (open: bool
                                     </button>
                                 </div>
 
-                                <div className="mt-10 justify-center overflow-hidden bg-white sm:rounded-lg">
+                                <div className="mt-10 justify-center overflow-hidden bg-gray-100 sm:rounded-lg">
                                     <div className="flex flex-row w-full px-4 py-5 sm:px-6">
                                         <div className="flex-shrink-0 flex items-center justify-center h-20 w-20 rounded-full bg-gray-400 text-white sm:h-24 sm:w-24">
                                             <Image src={details.image} alt={capitalizeStr(details.name)} width={150} height={150} />
@@ -80,7 +80,6 @@ const Modal = ({ open, setOpen, details }: { open: boolean, setOpen: (open: bool
 
                                     </div>
                                 </div>
-
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>

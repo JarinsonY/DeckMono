@@ -3,6 +3,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { useState } from 'react';
 import { PaginationButton, PaginationContainer } from './styled';
 interface PaginationProps {
+    total: number;
     page: number;
     prevPage: string;
     nextPage: string;
@@ -10,6 +11,7 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({
+    total,
     page,
     prevPage,
     nextPage,
@@ -29,7 +31,7 @@ const Pagination: React.FC<PaginationProps> = ({
                     <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
                 </PaginationButton>
             )}
-            <PaginationButton position={1}>{page}</PaginationButton>
+            <PaginationButton position={1}>{page} of {Math.round(total / 10)}</PaginationButton>
             {nextPage !== null && (
                 <PaginationButton position={2} onClick={handleNextPage}>
                     <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />

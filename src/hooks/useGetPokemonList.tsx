@@ -17,11 +17,6 @@ const useGetPokemonList = () => {
         try {
             const response = await fetch(url);
             const data = await response.json();
-            /* let pokemonPromises = data.results.map(async (pokemon: any) => {
-                const response = await fetch(pokemon.url);
-                const data = await response.json();
-                return data;
-            }); */
             let pokemonPromises = data.results.map((pokemon: { url: RequestInfo | URL; }) => fetch(pokemon.url));
             let newOffset = (new URL(url)).searchParams.get('offset');
 
@@ -32,7 +27,8 @@ const useGetPokemonList = () => {
                         list: values.filter(pokemon => pokemon.id <= LIMIT_POKEMON_GENERATION),
                         prev: data.previous,
                         next: data.next,
-                        offset: newOffset
+                        offset: newOffset,
+                        total: data.count,
                     });
                     setIsLoading(false);
                 });

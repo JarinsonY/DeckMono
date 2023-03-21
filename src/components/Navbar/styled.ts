@@ -6,7 +6,7 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.h1`
-    ${tw`text-2xl font-bold text-white`}
+    ${tw`cursor-pointer text-2xl font-bold text-white transition ease-in-out duration-150 hover:text-rose-500 hover:scale-110`}
 `;
 
 export const NavbarMenu = styled.div`
