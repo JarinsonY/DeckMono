@@ -3,11 +3,11 @@ import styled from "styled-components";
 import Image from "next/image";
 
 export const CardContainer = styled.div`
-    ${tw`flex w-48 md:w-56 lg:w-60 flex-col rounded-lg shadow`};
+    ${tw`flex flex-col cursor-pointer transition ease-in-out hover:scale-105 w-48 md:w-56 lg:w-60 rounded-lg shadow`};
 `;
 
 export const ContainerImage = styled.div`
-    ${tw`flex justify-center overflow-hidden bg-poke-wall bg-cover bg-no-repeat rounded-t-lg `};
+    ${tw`flex relative justify-center overflow-hidden bg-poke-wall bg-cover bg-no-repeat rounded-t-lg `};
 `;
 
 export const ImagePokemon = styled(Image)`
@@ -15,21 +15,17 @@ export const ImagePokemon = styled(Image)`
 `;
 
 export const PillWeight = styled.span`
-    ${tw`bottom-0 right-0 w-full h-7 bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded-full mr-2`}
+    ${tw`absolute bottom-1.5 right-1.5 inline-flex items-center rounded-full bg-green-100 px-3 py-0.5 text-xs font-medium text-green-800`}
 `;
 
 export const BodyCard = styled.div`
-    ${tw`px-6 py-4`}
+    ${tw`pt-3 bg-gray-800 border-gray-700`}
 `;
 
-export const Name = styled.h2`
-    ${tw`font-bold text-xl mb-2`}
+export const NameCard = styled.h3`
+    ${tw`mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white`}
 `;
 
-export const Moves = styled.ul`
-    ${tw`flex flex-wrap`}
-`;
-
-export const Move = styled.li`
-    ${tw`bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2`}
+export const Tags = styled.p`
+    ${tw`mb-3 font-normal text-gray-700 dark:text-gray-400`}
 `;

@@ -1,15 +1,13 @@
-import avatarImg from '../../assets/images/avatar.png';
+
 import AvatarButton from './AvatarButton';
 import { Header, NavbarMenu, Title } from './styled';
 
 const Navbar = () => {
     return (
         <Header>
-            <Title>
-                <span>DEXMONO</span>
-            </Title>
+            <Title>DEX<strong>MONO</strong></Title>
             <NavbarMenu>
-                <AvatarButton avatarImg={avatarImg} />
+                <AvatarButton />
             </NavbarMenu>
         </Header>
     );
