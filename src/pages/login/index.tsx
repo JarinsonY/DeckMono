@@ -14,6 +14,7 @@ import Input from "@/components/Input";
 import JPLogo from "../../assets/images/JP.png";
 
 import { Button, Form, Logo, Main, Page, Title } from "./styled";
+import Loader from "@/components/Loader";
 
 type FormValues = {
     email: string;
@@ -60,41 +61,39 @@ const LoginPage = () => {
                 </Logo>
                 <Title>DEX<strong>MONO</strong></Title>
 
-                <Form onSubmit={handleSubmit(onSubmit)}>
-                    <Input
-                        type="email"
-                        id="email"
-                        label="Email"
-                        placeholder="you@example.com"
-                        aria-invalid="true"
-                        aria-describedby="email-error"
-                        hasError={errors?.email}
-                        register={register}
-                        errors={errors}
-                    />
+                {isLoading
+                    ? <Loader />
+                    : <Form onSubmit={handleSubmit(onSubmit)}>
+                        <Input
+                            type="email"
+                            id="email"
+                            label="Email"
+                            placeholder="you@example.com"
+                            aria-invalid="true"
+                            aria-describedby="email-error"
+                            hasError={errors?.email}
+                            register={register}
+                            errors={errors}
+                        />
 
-                    <Input
-                        type="password"
-                        id="password"
-                        label="Password"
-                        aria-describedby="password-error"
-                        hasError={errors?.password}
-                        register={register}
-                        errors={errors}
-                    />
+                        <Input
+                            type="password"
+                            id="password"
+                            label="Password"
+                            aria-describedby="password-error"
+                            hasError={errors?.password}
+                            register={register}
+                            errors={errors}
+                        />
 
-                    <Button
-                        type="submit" disabled={isLoading}
-                    >
-                        {isLoading
-                            ? <svg className="animate-spin h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                            </svg>
-                            : "Login"
-                        }
-                    </Button>
-                </Form>
+                        <Button
+                            type="submit" disabled={isLoading}
+                        >
+                            Login
+                        </Button>
+
+                    </Form>
+                }
             </Main>
         </Page>
     );
