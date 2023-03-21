@@ -6,7 +6,7 @@ const Navbar = () => {
     return (
         <Header>
             <Title>
-                <span>DeckMono</span>
+                <span>DEXMONO</span>
             </Title>
             <NavbarMenu>
                 <AvatarButton avatarImg={avatarImg} />
