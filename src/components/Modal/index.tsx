@@ -3,6 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import DataRow from './DataRow'
 import Image from 'next/image'
+import { capitalizeStr } from '@/utils/funtions'
 
 type DetailsPokemon = {
     name: string,
@@ -58,19 +59,19 @@ const Modal = ({ open, setOpen, details }: { open: boolean, setOpen: (open: bool
 
                                 <div className="mt-10 justify-center overflow-hidden bg-white sm:rounded-lg">
                                     <div className="flex flex-row w-full px-4 py-5 sm:px-6">
-                                        <div className="flex-shrink-0 flex items-center justify-center h-20 w-20 rounded-full bg-indigo-500 text-white sm:h-24 sm:w-24">
-                                            <Image src={details.image} alt={details.name} width={150} height={150} />
+                                        <div className="flex-shrink-0 flex items-center justify-center h-20 w-20 rounded-full bg-gray-400 text-white sm:h-24 sm:w-24">
+                                            <Image src={details.image} alt={capitalizeStr(details.name)} width={150} height={150} />
                                         </div>
                                         <div className="flex flex-col w-full h-full items-center self-center">
-                                            <h3 className="text-lg font-medium leading-6 text-gray-900">{details.name}</h3>
-                                            <p className="mt-1 max-w-2xl text-sm text-gray-500">Details of {details.name}</p>
+                                            <h3 className="text-lg font-medium leading-6 text-gray-900">{capitalizeStr(details.name)}</h3>
+                                            <p className="mt-1 max-w-2xl text-sm text-gray-500">Details of {capitalizeStr(details.name)}</p>
                                         </div>
                                     </div>
                                     <div className=" px-4 py-5 sm:p-0">
                                         <dl className="sm:divide-y sm:divide-gray-200">
                                             <DataRow label="Type" description={details.type} />
-                                            <DataRow label="Weight" description={details.weight.toString()} />
-                                            <DataRow label="Height" description={details.height.toString()} />
+                                            <DataRow label="Weight" description={`${details.weight.toString()} kg`} />
+                                            <DataRow label="Height" description={`${details.height.toString()} m`} />
                                             <DataRow label="Moves" description={details.moves.map((move: any) => move.move.name).join(', ')} />
                                             <DataRow label="Abilities" description={details.abilities.map((ability: any) => ability.ability.name).join(', ')} />
                                             <DataRow label="Types" description={details.types.map((type: any) => type.type.name).join(', ')} />

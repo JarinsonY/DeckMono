@@ -2,7 +2,9 @@ import { Pokemon } from "@/utils/types";
 import Image from "next/image";
 import { useState } from "react";
 import Modal from "../Modal";
-import { BodyCard, CardContainer, ContainerImage, ImagePokemon, Move, Moves, Name, PillWeight } from "./styled";
+import { BodyCard, CardContainer, ContainerImage, ImagePokemon, NameCard, PillWeight, Tags } from "./styled";
+import bgPokemon from "../../assets/images/background.png";
+import { capitalizeStr } from "@/utils/funtions";
 
 /* type Pokemon = {
     id: number;
@@ -18,21 +20,19 @@ const Card = ({ pokemon }: { pokemon: any }) => {
 
     return (
         <>
-            <CardContainer className="cursor-pointer transition ease-in-out hover:scale-105" onClick={() => setOpen(true)}>
-                <PillWeight>{pokemon.weight} kg</PillWeight>
+            <CardContainer onClick={() => setOpen(true)}>
                 <ContainerImage>
-                    <Image src={pokemon.sprites.front_default} alt={pokemon.name} width={150} height={150} />
-                    {/* Pill of weight */}
-                    {/* <div className="absolute top-0 right-0 bg-gray-200 dark:bg-gray-700 rounded-full px-2 py-1 text-xs font-semibold text-gray-700 dark:text-gray-200">
-                        <span className="font-bold">{pokemon.weight}</span> kg
-                    </div> */}
+                    <ImagePokemon src={pokemon.sprites.front_default} alt={pokemon.name} width={150} height={150} style={{ background: `url(${bgPokemon})` }} />
+                    <PillWeight>
+                        {pokemon.weight} kg
+                    </PillWeight>
                 </ContainerImage>
-                <div className="pt-3 bg-white border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-                    <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{pokemon.name}</h5>
-                    {pokemon.moves.slice(0, 2).map((move: any) => (
-                        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400" key={move.move.name}>#{move.move.name}</p>
-                    ))}
-                </div>
+                <BodyCard className="pt-3 px-4 bg-gray-800 border-gray-700 text-left">
+                    <NameCard className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{capitalizeStr(pokemon.name)}</NameCard>
+                    <Tags className="mb-3 font-normal text-gray-700 dark:text-gray-400">{pokemon.moves.slice(0, 2).map((move: any, index: number) => (
+                        <span key={move.move.name}>#{move.move.name}{index === 1 ? '' : ', '}</span>
+                    ))}</Tags>
+                </BodyCard>
             </CardContainer>
 
             <Modal
