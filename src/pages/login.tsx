@@ -14,7 +14,7 @@ import styled from "styled-components";
 import { useEffect } from "react";
 
 import Input from "@/components/Input";
-import JPLogo from "../../assets/images/JP.png";
+import JPLogo from "../assets/images/JP.png";
 
 import Loader from "@/components/Loader";
 import Button from "@/components/shared/Button";
