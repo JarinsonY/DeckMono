@@ -1,8 +1,9 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon, UserCircleIcon } from '@heroicons/react/20/solid'
-import Image from 'next/image'
 import { useAuth } from '@/context/AuthContext'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ')
@@ -10,6 +11,7 @@ function classNames(...classes: string[]) {
 
 const AvatarButton = () => {
 
+    const router = useRouter();
     const { user, logout } = useAuth();
 
     return (
@@ -36,6 +38,20 @@ const AvatarButton = () => {
                             <p className="text-sm">Signed in as</p>
                             <p className="truncate text-sm font-medium text-gray-900">{user?.email}</p>
                         </div>
+
+                        <Menu.Item>
+                            {({ active }) => (
+                                <Link
+                                    href="/profile"
+                                    className={classNames(
+                                        router.pathname === "/profile" ? 'bg-gray-300 text-gray-900' : 'text-gray-700',
+                                        'block px-4 py-2 text-sm'
+                                    )}
+                                >
+                                    Profile
+                                </Link>
+                            )}
+                        </Menu.Item>
 
                         <Menu.Item>
                             {({ active }) => (

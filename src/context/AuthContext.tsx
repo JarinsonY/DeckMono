@@ -1,10 +1,6 @@
+import { User } from '@/utils/types';
 import { useRouter } from 'next/router';
-import { createContext, useContext, useState } from 'react';
-
-interface User {
-    username: string;
-    email: string;
-}
+import { createContext, useContext, useEffect, useState } from 'react';
 
 interface AuthContextData {
     user: User | null;
@@ -27,13 +23,20 @@ function useAuth() {
 }
 
 function AuthProvider({ children }: AuthProviderProps) {
+
     const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const user = localStorage.getItem('user');
+        if (user) {
+            setUser(JSON.parse(user));
+        }
+    }, []);
 
     const router = useRouter();
 
     async function login(email: string, password: string) {
-        console.log('login', email, password)
-        // Aquí iría la lógica de autenticación, por ejemplo:
+
         const response = await fetch('/api/login', {
             method: 'POST',
             headers: {
@@ -41,12 +44,13 @@ function AuthProvider({ children }: AuthProviderProps) {
             },
             body: JSON.stringify({ email, password }),
         });
-        if (response.ok) {
+        if (response.ok || response.status === 200) {
             const data = await response.json();
-            const user = { username: data.username, email: data.email };
+            const user = { id: data.id, name: data.name, username: data.username, email: data.email, phone: data.phone, age: data.age, token: data.token };
             setUser(user);
             localStorage.setItem('user', JSON.stringify(user));
-            router.push("/dashboard");
+            localStorage.setItem('token', JSON.stringify(user.token));
+            router.push("/");
         } else {
             throw new Error('Invalid email or password');
         }
@@ -55,6 +59,8 @@ function AuthProvider({ children }: AuthProviderProps) {
     function logout() {
         setUser(null);
         localStorage.removeItem('user');
+        localStorage.removeItem('token');
+        localStorage.clear();
         router.push('/login');
     }
 

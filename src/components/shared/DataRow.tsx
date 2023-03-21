@@ -1,6 +1,6 @@
 type Props = {
     label: string;
-    description: string;
+    description: string | number;
 }
 
 function DataRow({ label, description }: Props) {

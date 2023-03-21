@@ -13,8 +13,10 @@ import { useAuth } from "@/context/AuthContext";
 import Input from "@/components/Input";
 import JPLogo from "../../assets/images/JP.png";
 
-import { Button, Form, Logo, Main, Page, Title } from "./styled";
+import { Form, Logo, Main, Page, Title } from "./styled";
 import Loader from "@/components/Loader";
+import Button from "@/components/shared/Button";
+import { useEffect } from "react";
 
 type FormValues = {
     email: string;
@@ -24,6 +26,14 @@ type FormValues = {
 const LoginPage = () => {
     const router = useRouter();
     const { login } = useAuth();
+
+    // Verificar si el usuario está autenticado
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token) {
+            router.push('/');
+        }
+    }, [router]);
 
     const [isLoading, setIsLoading] = useState(false);
     const {
@@ -87,10 +97,10 @@ const LoginPage = () => {
                         />
 
                         <Button
-                            type="submit" disabled={isLoading}
-                        >
-                            Login
-                        </Button>
+                            type="submit"
+                            label="Login"
+                            disabled={isLoading}
+                        />
 
                     </Form>
                 }

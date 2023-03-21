@@ -1,22 +1,47 @@
 [
     {
-        "username": "usuario1",
-        "email": "usuario1@ejemplo.com",
-        "password": "password123"
+        "id": 1,
+        "name": "Juan Pérez",
+        "username": "juanp",
+        "email": "juanp@gmail.com",
+        "phone": "1234567890",
+        "age": 25,
+        "password": "1234"
     },
     {
-        "username": "usuario2",
-        "email": "usuario2@ejemplo.com",
-        "password": "contraseña321"
+        "id": 2,
+        "name": "María García",
+        "username": "mariag",
+        "email": "mariag@yahoo.com",
+        "phone": "0987654321",
+        "age": 30,
+        "password": "5678"
     },
     {
-        "username": "usuario3",
-        "email": "usuario3@ejemplo.com",
-        "password": "clave_secreta"
+        "id": 3,
+        "name": "Carlos López",
+        "username": "carlosl",
+        "email": "carlosl@hotmail.com",
+        "phone": "1357924680",
+        "age": 28,
+        "password": "9012"
     },
     {
-        "username": "usuario4",
+        "id": 4,
+        "name": "Bryan Portillo",
+        "username": "bryanp",
         "email": "bryanportillo8@gmail.com",
+        "phone": "5631456123",
+        "age": 24,
         "password": "123456"
+    },
+    {
+        "id": 5,
+        "name": "Luisa Fernanda",
+        "username": "luisaf",
+        "email": "ferlu@gmail.com",
+        "phone": "894512356",
+        "age": 22,
+        "password": "2282"
     }
 ]
